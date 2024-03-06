@@ -17,5 +17,5 @@
     }
   ],
   "astroAllowShorthand": false,
-  "tailwindConfig": "./tailwind.config.mjs"
+  "tailwindConfig": "./tailwind.config.cjs"
 }

@@ -14,7 +14,7 @@ export default {
       },
     },
     fontFamily: {
-      mono: ['"Space Mono", monospace', ...defaultTheme.fontFamily.mono],
+      sans: ["Roboto, sans-serif", ...defaultTheme.fontFamily.sans],
     },
   },
   plugins: [require("@tailwindcss/typography")],

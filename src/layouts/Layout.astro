@@ -1,13 +1,8 @@
 ---
 import "@fontsource/space-mono"
 
-const siteConfig = {
-  name: "Raphico",
-  description:
-    "Welcome to the digital realm of Raphael, a passionate developer dedicated to crafting seamless solutions for the web. Explore Raphael's projects, skills, and interests in web development, gaming, and anime. Connect with Raphael to collaborate and innovate together.",
-  url: "http://raphico.vercel.app",
-  ogImage: "https://raphico.vercel.app/og.png",
-}
+import { siteConfig } from "../config/site"
+import SiteHeader from "../components/SiteHeader.astro"
 ---
 
 <!doctype html>
@@ -39,6 +34,7 @@ const siteConfig = {
     class="min-h-screen bg-background font-mono text-foreground antialiased"
   >
     <div class="relative min-h-screen flex-1 flex-col">
+      <SiteHeader />
       <main class="flex-1">
         <slot />
       </main>

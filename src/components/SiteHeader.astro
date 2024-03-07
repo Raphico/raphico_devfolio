@@ -1,0 +1,26 @@
+---
+import { siteConfig } from "../config/site"
+
+import GithubSVG from "../assets/github.svg.astro"
+import TwitterSVG from "../assets/twitter.svg.astro"
+---
+
+<header class="w-full bg-background">
+  <div class="mx-auto flex h-14 max-w-6xl items-center justify-between px-4">
+    <a href="/">
+      <h3 class="text-xl font-bold">Raphico</h3>
+    </a>
+
+    <div class="flex items-center gap-4">
+      <a href={siteConfig.links.github}>
+        <GithubSVG />
+        <span class="sr-only">Github</span>
+      </a>
+
+      <a href={siteConfig.links.twitter}>
+        <TwitterSVG />
+        <span class="sr-only">Twitter</span>
+      </a>
+    </div>
+  </div>
+</header>

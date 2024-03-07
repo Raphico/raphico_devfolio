@@ -6,20 +6,20 @@ import TwitterSVG from "../assets/twitter.svg.astro"
 ---
 
 <header class="w-full bg-background">
-  <div class="mx-auto flex h-14 max-w-6xl items-center justify-between px-4">
+  <div class="mx-auto flex h-14 max-w-6xl items-center justify-between px-6">
     <a href="/">
       <h3 class="text-xl font-bold">Raphico</h3>
     </a>
 
     <div class="flex items-center gap-4">
-      <a href={siteConfig.links.github}>
+      <a href={siteConfig.links.github} target="_blank" rel="noreferrer">
         <GithubSVG />
         <span class="sr-only">Github</span>
       </a>
 
-      <a href={siteConfig.links.twitter}>
+      <a href={siteConfig.links.twitter} target="_blank" rel="noreferrer">
         <TwitterSVG />
-        <span class="sr-only">Twitter</span>
+        <span class="sr-only">X</span>
       </a>
     </div>
   </div>

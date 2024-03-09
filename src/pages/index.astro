@@ -1,5 +1,97 @@
 ---
 import Layout from "../layouts/Layout.astro"
+import ProjectCard from "../components/ProjectCard.astro"
+
+import { projectSchema } from "../validations/project"
+
+import { portfolio } from "../config/portfolio"
+
+async function getProjects() {
+  const res = await fetch(
+    `https://api.github.com/users/raphico/repos?type=owner&sort=updated&per_page=7`,
+  )
+
+  if (!res.ok) {
+    return []
+  }
+
+  const parsedRes = projectSchema.array().safeParse(await res.json())
+
+  if (!parsedRes.success) {
+    return []
+  }
+
+  const filteredProjects = parsedRes.data
+    .filter((project) => project.stargazers_count >= 1)
+    .sort((a, b) => (a.stargazers_count > b.stargazers_count ? -1 : 1))
+
+  return filteredProjects
+}
+
+const projects = await getProjects()
 ---
 
-<Layout />
+<Layout>
+  <div
+    class="mx-auto flex max-w-4xl flex-col items-start space-y-24 px-6 pb-8 pt-16 md:py-8 md:pt-28"
+  >
+    <section>
+      <h1 class="text-5xl font-bold leading-tight md:text-6xl xl:text-7xl">
+        Hey there! 👋 I'm Raphael, passionate about building solutions for the
+        web.
+      </h1>
+    </section>
+
+    <section class="space-y-2">
+      <h2 class="text-2xl font-bold">About me</h2>
+      <p class="max-w-2xl text-lg">
+        I'm not just about code. While I'm busy architecting solutions and
+        diving into the latest tech trends, you can find me immersed in gaming
+        sessions or exploring the captivating stories of anime.
+      </p>
+    </section>
+
+    <section class="space-y-2">
+      <h2 class="text-2xl font-bold">What I bring to the table</h2>
+      <p class="max-w-2xl text-lg">
+        As a Full-stack Web Developer, I specialize in blending striking
+        front-end design with robust back-end development to create seamless
+        digital solutions. Whether you're a startup looking to make your mark or
+        an established brand seeking to elevate your online presence, I'm here
+        to turn your vision into reality.
+      </p>
+      <div class="flex max-w-2xl flex-wrap gap-4 pt-4">
+        {
+          portfolio.skillSet.map((skill) => (
+            <p class="rounded-md border border-border px-4 py-1 text-base font-medium">
+              {skill}
+            </p>
+          ))
+        }
+      </div>
+    </section>
+
+    <section class="space-y-4">
+      <h2 class="text-2xl font-bold">Projects</h2>
+      <div class="grid gap-8 sm:grid-cols-2">
+        {projects.map((project) => <ProjectCard project={project} />)}
+      </div>
+    </section>
+
+    <section class="space-y-2">
+      <h2 class="text-2xl font-bold">Say Hello</h2>
+      <p class="max-w-2xl pb-4 text-lg">
+        Whether you're a potential client, fellow developer, or just someone who
+        shares a passion for tech and creativity, I'd love to connect! Let's
+        explore how we can collaborate, innovate, and build something remarkable
+        together.
+      </p>
+      <a
+        href="mailto:raphico@gmail.com"
+        class="focus-visible:ring-ring inline-flex h-10 items-center justify-center rounded-full bg-accent px-4 py-2 font-medium text-foreground shadow transition-colors duration-300 hover:bg-accent/90 focus-visible:outline-none focus-visible:ring-1"
+      >
+        Get In touch
+      </a>
+    </section>
+  </div>
+</Layout>

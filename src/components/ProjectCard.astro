@@ -1,0 +1,59 @@
+---
+import type { Project } from "../types"
+
+import { siteConfig } from "../config/site"
+
+import StarSVG from "../assets/star.svg.astro"
+import CircleSVG from "../assets/circle.svg.astro"
+import GithubSVG from "../assets/github.svg.astro"
+import LinkSVG from "../assets/link.svg.astro"
+
+type Props = {
+  project: Project
+}
+
+const { project } = Astro.props
+---
+
+<div class="flex flex-col space-y-6 rounded-sm border border-border p-4">
+  <div class="space-y-2">
+    <div class="flex items-center justify-between">
+      <h4 class="font-bold">{project.name}</h4>
+
+      <div class="flex items-center gap-4">
+        <a
+          href={project.html_url ?? siteConfig.links.github}
+          target="_blank"
+          rel="noreferrer noopener"
+        >
+          <GithubSVG />
+          <span class="sr-only">Github</span>
+        </a>
+
+        <a
+          href={project.homepage ?? siteConfig.links.github}
+          target="_blank"
+          rel="noreferrer noopener"
+        >
+          <LinkSVG />
+          <span class="sr-only">Live Site</span>
+        </a>
+      </div>
+    </div>
+
+    <p class="line-clamp-2 text-sm text-muted">
+      {project.description ?? "No description provided"}
+    </p>
+  </div>
+
+  <div class="flex items-center gap-4 text-sm text-muted">
+    <div class="flex items-center">
+      <CircleSVG />
+      {project.language ?? "Unknown"}
+    </div>
+    <div class="flex items-center">
+      <StarSVG class="mr-1 size-3" aria-hidden="true" />
+      {project.stargazers_count}
+    </div>
+  </div>
+</div>

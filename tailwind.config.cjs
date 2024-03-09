@@ -10,7 +10,7 @@ export default {
         foreground: "#FFFFFF",
         border: "#403E3E",
         muted: "#b8b8b8",
-        accent: "#4CC1D3",
+        accent: "#0FB369",
       },
     },
     fontFamily: {

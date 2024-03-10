@@ -10,7 +10,9 @@ export const portfolio: Portfolio = {
     "Next JS",
     "Astro",
     "Tailwind CSS",
-    "SQL",
-    "Git/Github",
+    "SQL(MYSQL)",
+    "Git",
+    "Github",
+    "Figma",
   ],
 }
